@@ -1,36 +1,33 @@
-import express from 'express'
-import path from 'path'
-import favicon from 'serve-favicon'
-import dotenv from 'dotenv'
+import express from 'express';
+import path from 'path';
+import favicon from 'serve-favicon';
+import dotenv from 'dotenv';
+import cors from 'cors'; // Import the cors package
 
-// import the router from your routes file
+// Import the routers for your routes
+import plantsRouter from './routes/plants.js';
+import potsRouter from './routes/pots.js';
+import soilTypesRouter from './routes/soilTypes.js';
+import accessoriesRouter from './routes/accessories.js';
+import customKitsRouter from './routes/customKits.js';
 
+dotenv.config();
 
-dotenv.config()
+const PORT = process.env.PORT || 3000;
+const app = express();
 
-const PORT = process.env.PORT || 3000
+// Middleware
+app.use(cors()); // Enable CORS
+app.use(express.json());
 
-const app = express()
+// Routes
+app.use('/api/plants', plantsRouter);
+app.use('/api/pots', potsRouter);
+app.use('/api/soilTypes', soilTypesRouter);
+app.use('/api/accessories', accessoriesRouter);
+app.use('/api/customKits', customKitsRouter);
 
-app.use(express.json())
-
-if (process.env.NODE_ENV === 'development') {
-    app.use(favicon(path.resolve('../', 'client', 'public', 'lightning.png')))
-}
-else if (process.env.NODE_ENV === 'production') {
-    app.use(favicon(path.resolve('public', 'lightning.png')))
-    app.use(express.static('public'))
-}
-
-// specify the api path for the server to use
-
-
-if (process.env.NODE_ENV === 'production') {
-    app.get('/*', (_, res) =>
-        res.sendFile(path.resolve('public', 'index.html'))
-    )
-}
-
+// Start the server
 app.listen(PORT, () => {
-    console.log(`server listening on http://localhost:${PORT}`)
-})
+    console.log(`Server is running on port ${PORT}`);
+});

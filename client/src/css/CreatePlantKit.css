@@ -1,0 +1,106 @@
+/* CreatePlantKit.css */
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h1 {
+    text-align: center;
+    color: #333;
+}
+
+.accessories-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.accessory-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 35px;
+    user-select: none;
+}
+
+/* Hide the default checkbox */
+.accessory-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.accessory-item .custom-checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #f1f1f1;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* On hover, change background color */
+.accessory-item:hover .custom-checkbox {
+    background-color: #e8f0fe;
+}
+
+/* When the checkbox is checked, show the checkmark */
+.accessory-item input:checked ~ .custom-checkbox {
+    background-color: #4caf50;
+    border-color: #4caf50;
+}
+
+/* Create the checkmark/indicator (hidden by default) */
+.accessory-item .custom-checkbox:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Show the checkmark when checked */
+.accessory-item input:checked ~ .custom-checkbox:after {
+    display: block;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+input, select {
+    width: calc(100% - 20px);
+    padding: 8px 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
